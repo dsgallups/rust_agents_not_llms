@@ -1,8 +1,3 @@
-#![allow(
-    unused,
-    reason = "I'm not interested in IDE lints that say something is unused since this is an example"
-)]
-
 use crate::{camera::TestCamera, fan::TestFan, manager::Manager, mirror::TestMirror};
 
 mod camera;

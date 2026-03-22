@@ -1,6 +1,6 @@
 use std::{f32::consts::PI, time::Duration};
 
-use tokio::{select, sync::mpsc};
+use tokio::sync::mpsc;
 
 use crate::prelude::*;
 
@@ -67,19 +67,6 @@ impl Manager {
         let mut current_fan_position = 0.;
         let mut current_mirror_rotation = 0.;
         let mut num_pics_taken = 0;
-
-        let print_stats = |msg: Option<&str>| match msg {
-            Some(msg) => {
-                println!(
-                    "(fanspeed: {current_fanspeed:02}, fanpos: {current_fan_position:02}, mirror_t: {current_mirror_rotation:02}): {msg}"
-                );
-            }
-            None => {
-                println!(
-                    "(fanspeed: {current_fanspeed:02}, fanpos: {current_fan_position:02}, mirror_t: {current_mirror_rotation:02})"
-                );
-            }
-        };
 
         let mut times_looped = 0;
 
@@ -151,7 +138,7 @@ impl Manager {
                 PictureState::Ready if can_snap_pic => {
                     take_picture.send(TakePicture).await?;
                     num_pics_taken += 1;
-                    /// the state is now took picture
+                    // the state is now took picture
                     if times_looped % 10 == 0 {
                         msg.push_str(";Mirror updated");
                         set_mirror_theta
@@ -231,13 +218,13 @@ async fn fan_handler<F: Fan>(
                 // that will make this function return if it is a failure. You can handle this error
                 // gracefully using
                 match current_fan_state {
-                    /// The result is good!
+                    // The result is good!
                     Ok(current_fan_state) => {
                         // send a message to our channel that this is the current fanspeed.
                         msg_manager.send(ManagerMsg::Fanspeed(current_fan_state)).await?;
                     }
                     Err(e) => {
-                        /// print out to stderr that we errored
+                        // print out to stderr that we errored
                         eprintln!("Error: {e:?}");
                     }
                 }
@@ -257,7 +244,6 @@ async fn fan_handler<F: Fan>(
             }
         }
     }
-    Ok(())
 }
 
 async fn camera_handler<C: Camera>(
@@ -293,5 +279,4 @@ async fn mirror_handler<M: Mirror>(
             }
         }
     }
-    Ok(())
 }

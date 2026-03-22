@@ -18,7 +18,6 @@ pub struct TestCamera {
 impl Camera for TestCamera {
     // Notice that this is `async fn`
     async fn take_picture(&mut self) -> Result<()> {
-        // println!("Taking picture!");
         self.num_pictures_taken += 1;
         // we return Ok here, so this never fails. we can return `anyhow!("I failed")` possibly.
         Ok(())
