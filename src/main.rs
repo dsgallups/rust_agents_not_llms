@@ -3,6 +3,9 @@
     reason = "I'm not interested in IDE lints that say something is unused since this is an example"
 )]
 
+mod camera;
+mod fan;
+mod mirror;
 /// This is just a set of common exports that I use throughout this project.
 /// It's just useful to have
 mod prelude;
