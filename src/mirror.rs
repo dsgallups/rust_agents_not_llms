@@ -7,14 +7,16 @@ pub struct TestMirror {
 
 impl Mirror for TestMirror {
     async fn set_theta(&mut self, radians: f32) -> Result<()> {
-        todo!()
+        println!("setting mirror theta to {radians}");
+        self.theta = radians;
+        Ok(())
     }
-    fn theta(&self) -> f32 {
-        todo!()
+    async fn theta(&self) -> Result<f32> {
+        Ok(self.theta)
     }
 }
 
-pub trait Mirror {
-    fn set_theta(&mut self, radians: f32) -> impl Future<Output = Result<()>>;
-    fn theta(&self) -> f32;
+pub trait Mirror: Send + Sync + 'static {
+    fn set_theta(&mut self, radians: f32) -> impl Future<Output = Result<()>> + Send;
+    fn theta(&self) -> impl Future<Output = Result<f32>> + Send;
 }

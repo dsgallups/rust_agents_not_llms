@@ -15,3 +15,7 @@ Steps to get here
 
 ## Begin implementing types to form a general code shape
 - `Manager` with its properties. I expect from here to pass in camera, fan, etc. into this.
+
+
+## Investigate channels
+`tokio` has great docs on channels: <https://tokio.rs/tokio/tutorial/channels#tokios-channel-primitives>. I'm following this as I build out the system
