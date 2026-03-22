@@ -5,6 +5,7 @@
 
 mod camera;
 mod fan;
+mod manager;
 mod mirror;
 /// This is just a set of common exports that I use throughout this project.
 /// It's just useful to have
