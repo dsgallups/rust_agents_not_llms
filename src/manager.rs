@@ -6,6 +6,10 @@ pub struct Manager {
 }
 
 impl Manager {
+    /// So we have these funky looking `C, M, F` here. What I'm doing is saying, I accept any type C that implements `Camera`.
+    ///
+    /// This is particularly useful when it comes to testing, because you can debug where this logic falters without
+    /// having to worry about running physical devices
     pub async fn run<C, M, F>(self, camera: C, mirror: M, fan: F) -> Result<()>
     where
         C: Camera,
