@@ -1,0 +1,6 @@
+[package]
+name = "rust_agents_not_llms"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
